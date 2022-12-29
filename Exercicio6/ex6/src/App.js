@@ -71,7 +71,28 @@ function App() {
       vitoria=true
       
     }
-    return vitoria;
+    if(vitoria){
+      return vitoria;
+    }
+    else{
+      let testa=0;
+      for(let c=0; c<3; c++){
+        
+        for(let l=0; l<3; l++){
+          if(jogo[l][c]!==''){
+            testa++
+          }
+        }
+      }
+      if(testa===9){
+        alert("Deu empate");
+        setJogando(false);
+        
+        }
+        else{
+          return vitoria;
+        }
+    }
     
   }
   const trocaJogador=()=>{
@@ -110,6 +131,8 @@ function App() {
           alert('Jogador '+ jogador +' venceu!')
           setJogando(false)
         }
+        //encontraVencedor(index1,index2)
+        
       }else{
         alert("Espaço já definido!")
       }
@@ -127,34 +150,42 @@ function App() {
       return <button onClick={()=> reiniciar()}>Jogar Novamente</button>
     }
   }
-  /*outra forma teste vitoria
+  //outra forma teste vitoria
+  /*
   const encontraVencedor = ()=>{
     const formasDeVencer = [
-            [campo[0], campo[1], campo[2]],
-            [campo[3], campo[4], campo[5]],
-            [campo[6], campo[7], campo[8]],
+            [jogo[0], jogo[1], jogo[2]],
+            [jogo[3], jogo[4], jogo[5]],
+            [jogo[6], jogo[7], jogo[8]],
 
-            [campo[0], campo[3], campo[6]],
-            [campo[1], campo[4], campo[7]],
-            [campo[2], campo[5], campo[8]],
+            [jogo[0], jogo[3], jogo[6]],
+            [jogo[1], jogo[4], jogo[7]],
+            [jogo[2], jogo[5], jogo[8]],
 
-            [campo[6], campo[4], campo[2]],
-            [campo[0], campo[4], campo[8]],
+            [jogo[6], jogo[4], jogo[2]],
+            [jogo[0], jogo[4], jogo[8]],
 
     ]
-    formasDeVencer.forEach(campos =>{
-      if(campos.every(campo=>campo==="O")){
-        setVancedor("O venceu")
+    formasDeVencer.forEach(jogo =>{
+      if(jogo.every(campo=>campo==="O")){
+        trocaJogador()
+          alert('Jogador '+ jogador +' venceu!')
+          setJogando(false)
       }
-      else if(campos.every(campo=>campo==="X")){
-        setVancedor("X venceu")
+      else if(jogo.every(campo=>campo==="X")){
+        trocaJogador()
+          alert('Jogador '+ jogador +' venceu!')
+          setJogando(false)
       }
-      else {
-        setVencedor("Empatou")
+      else if(jogo.every(campo=>campo!=="")){
+        trocaJogador()
+          alert("Empatou")
+          setJogando(false)
+        
       }
     })
-  }
-  */
+  }*/
+  
 
 
   return (
